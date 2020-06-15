@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
       <!-------引入jQuery函式庫------->
+    <script src="./plugins/jquery-3.5.1.js"></script>
 </head>
 <body>
     <h1 class="header">jQuery</h1>
@@ -18,6 +19,44 @@
 </body>
 </html>
 <script>
+    // 進階版
+    $.get('https://kktix.com/events.json',{},(date)=>{
+        console.log(date)         
+          document.querySelector('.title').innerHTML=date.title
+          document.querySelector('h4').innerHTML=date.updated
+          let str ="";
+          date.entry.forEach((e) => {           
+            str=str+`<li>${e.title}</li>`;
+          });
+          document.querySelector('ul').innerHTML=str; 
+    })
+    // 基礎版
+    // $.ajax(
+    //   {
+    //     url:'https://kktix.com/events.json',
+    //     type:'GET',
+    //     success:
+    //     (date) => {
+    //       console.log(date)         
+    //       document.querySelector('.title').innerHTML=date.title
+    //       document.querySelector('h4').innerHTML=date.updated
+    //       let str ="";
+    //       date.entry.forEach((e) => {           
+    //         str=str+`<li>${e.title}</li>`;
+    //       });
+    //       document.querySelector('ul').innerHTML=str;          
+    //     },
+    //     error:
+    //     (c)=>{
+    //       console.log(`err:${c}`)
+    //     },
+    //     complete:
+    //     (a,b)=>{
+    //       console.log(`status:${b}`)
+    //     }
+    //   }
+    // )
+
     /********************************************************
     * 1.api網址  https://kktix.com/events.json
     * 2.選擇$.ajax()、$.get()、$.post()其中一種方式

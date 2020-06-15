@@ -17,6 +17,24 @@
 </body>
 </html>
 <script>
+    fetch('https://kktix.com/events.json',{method:'get'})
+    .then((res) => {
+        return res.json();
+    })
+    .then((a) => {
+        console.log(a);
+        document.querySelector('.title').innerHTML=a.title;
+        document.querySelector('h4').innerHTML=a.updated;
+        let str ="";
+        a.entry.forEach((e) => {           
+            str=str+`<li>${e.title}</li>`;
+        });
+        document.querySelector('ul').innerHTML=str;
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+    
     /********************************************************
     * 1.api網址  https://kktix.com/events.json
     * 2.建FETCH請求及實質內容

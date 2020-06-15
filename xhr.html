@@ -13,10 +13,29 @@
     <div class="title"></div>
     <h4></h4>
     <ul></ul>
-
+    <div class="footer"></div>
 </body>
 </html>
 <script>
+    var xhr=new XMLHttpRequest;
+    xhr.open('GET','https:kktix.com/events.json',true);
+    // async-非同步
+    xhr.onload=function(){
+        var type=xhr.getResponseHeader("Content-Type");
+        let response=xhr.responseText;
+        let res=JSON.parse(response);
+        console.log(res);
+        document.querySelector(".title").innerHTML=res.title;
+        document.querySelector("h4").innerHTML=res.updated;
+        let str="";
+        let events=res.entry;
+        events.forEach((e)=>{
+            str=str+`<li>${e.title}</li>`;
+        });
+        document.querySelector("ul").innerHTML=str;
+    }
+    xhr.send();
+    document.querySelector(".footer").innerHTML="這是頁尾";
     /********************************************************
     * 1.api網址  https://kktix.com/events.json
     * 2.宣告一個XMLHttpRequest物件
