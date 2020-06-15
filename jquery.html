@@ -24,11 +24,11 @@
         console.log(date)         
           document.querySelector('.title').innerHTML=date.title
           document.querySelector('h4').innerHTML=date.updated
-          let str ="";
-          date.entry.forEach((e) => {           
-            str=str+`<li>${e.title}</li>`;
-          });
-          document.querySelector('ul').innerHTML=str; 
+          let str =""
+          date.entry.forEach((e) => {
+            str=str+`<li>${e.title}</li>`
+          })
+          document.querySelector('ul').innerHTML=str 
     })
     // 基礎版
     // $.ajax(
