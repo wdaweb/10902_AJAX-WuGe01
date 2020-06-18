@@ -36,23 +36,23 @@ function getClass() {
 function getstudents(e) {
   $.get('api/getstudents.php',{'class':e},(k)=>{  
     killAll()
-    document.querySelector('#query1').innerHTML=k;
+    document.querySelector('#query1').innerHTML=k
   })
 }
 // 清除表格
 function killAll(){
-  document.querySelector('#add-r').innerHTML=null;
-  document.querySelector('#edit-r').innerHTML=null;
-  document.querySelector('#query1').innerHTML=null;
-  document.querySelector('#query-result').innerHTML=null;
+  document.querySelector('#add-r').innerHTML=null
+  document.querySelector('#edit-r').innerHTML=null
+  document.querySelector('#query1').innerHTML=null
+  document.querySelector('#query-result').innerHTML=null
 }
 // 抓取新增表格
 function opCreate() {
   $.get("api/addform.php",(k)=>{
     killAll()
-    document.querySelector('#add-r').innerHTML=k;
+    document.querySelector('#add-r').innerHTML=k
     $.get('./api/select_class.php',(e)=>{
-    document.querySelector('#class_num').innerHTML=e;
+    document.querySelector('#class_num').innerHTML=e
     })
   })
 }
@@ -84,14 +84,14 @@ function query(){
   let str=document.querySelector("#query").value
   $.get("./api/query.php",{'str':str},(e)=>{  
     killAll()
-    document.querySelector('#query-result').innerHTML=e;
+    document.querySelector('#query-result').innerHTML=e
   })
 }
 //抓取更新資料的函式
 function getUpdateForm(e){
   $.get("api/edit.php",{'id':e},(k)=>{
     killAll()
-    document.querySelector('#edit-r').innerHTML=k;
+    document.querySelector('#edit-r').innerHTML=k
   })
 }
 //編輯資料的函式
@@ -109,14 +109,14 @@ function update(e){
    form_date['dept']=document.querySelector('#dept2').value
    form_date['grad_at']=document.querySelector('#grad_at2').value
   $.post("api/edit.php",form_date,(k)=>{
-    (k=='1')?alert('更新成功'):alert('更新失敗');
+    (k=='1')?alert('更新成功'):alert('更新失敗')
   })
 }
 //刪除資料的函式
 function del(e){
   $.post("api/delete.php",{'id':e},(k)=>{
-    (k=="1")?alert(`已經刪除成功第${e}筆資料`):alert(`刪除失敗`);
-    getstudents(document.querySelector('#classes').querySelector('option').value);
+    (k=="1")?alert(`已經刪除成功第${e}筆資料`):alert(`刪除失敗`)
+    getstudents(document.querySelector('#classes').querySelector('option').value)
   })
 }
 </script>
