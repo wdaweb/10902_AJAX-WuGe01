@@ -7,7 +7,7 @@ $query=$db->all([]," where name like '%$str%' ");
 // $k=[];
 foreach($query as $q){
     echo "<div>結果:".$q['name']."-".$q['class_num']."-".$q['dept'];
-    echo "<input type='button' onclick='update(".$q['id'].")' value='更新'>";
+    echo "<input type='button' onclick='getUpdateForm(".$q['id'].")' value='更新'>";
     echo "<input type='button' onclick='del(".$q['id'].")' value='刪除'>";
     echo "</div>";
     // $k[]=$q['name'];
