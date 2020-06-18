@@ -113,12 +113,16 @@ function query(){
 }
 
 //編輯資料的函式
-function update(){
+function update(e){
 
 }
 
 //刪除資料的函式
-function del(){
+function del(e){
+  $.post("api/delete.php",{'id':e},(k)=>{
+    (k=="1")?alert(`已經刪除成功${e}資料`):alert(`刪除失敗`);
+    getstudents(document.querySelector('#classes').querySelector('option').value);
+  })
 
 }
 
