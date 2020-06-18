@@ -20,8 +20,7 @@
     <div id="add-r"></div>
     <div id="query-result"></div>
     <div id="query1"></div>
-  </div>
-      
+  </div>    
 </body>
 </html>
 <script>
@@ -32,6 +31,7 @@ function getClass() {
     document.querySelector('#classes').innerHTML=e
   }) 
 }
+document.querySelector('#query').addEventListener('input',()=>{query()})
 // 以Class查詢
 function getstudents(e) {
   $.get('api/getstudents.php',{'class':e},(k)=>{  
@@ -84,7 +84,13 @@ function query(){
   let str=document.querySelector("#query").value
   $.get("./api/query.php",{'str':str},(e)=>{  
     killAll()
-    document.querySelector('#query-result').innerHTML=e
+    let data=JSON.parse(e);
+    console.log(data);
+    let dom="";
+    data.forEach((q) => {
+      dom=dom+`<div class='q-text'>${q.name}-${q.class_num}<input type='button' onclick='getUpdateForm(${q.id})' value='更新'><input type='button' onclick='del(${q.id})' value='刪除'></div>`;
+    });
+    document.querySelector('#query-result').innerHTML=dom;   
   })
 }
 //抓取更新資料的函式
@@ -118,5 +124,13 @@ function del(e){
     (k=="1")?alert(`已經刪除成功第${e}筆資料`):alert(`刪除失敗`)
     getstudents(document.querySelector('#classes').querySelector('option').value)
   })
+}
+function ai() {
+    let str=document.querySelector('#query').value;
+    let xhr=new XMLHttpRequest;
+    xhr.open('GET','api/query.php?str='+str,(e)=>{
+
+    })
+    xhr.send();
 }
 </script>
